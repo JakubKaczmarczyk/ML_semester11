@@ -18,5 +18,8 @@ function [J,dJ]=CostFun(X,Y,Theta)
     % % (w,k) * (k,1) = (w,1)
     dJ =sum(X*(err.'),2)./m + lambda/m*Theta;
     
+    % % Sprawdzenie gradientu funkji numerycznie
+    % NumdJ = NumGrad(X,Y,Theta);
+    
     
 end
