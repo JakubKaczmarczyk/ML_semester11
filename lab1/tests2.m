@@ -3,7 +3,7 @@ close all;
 function Xout = MapFea(Xin)
     X_square = Xin.^2;
     X_cubic = Xin.^3;
-    Xout = [ones(1, size(Xin,2)); Xin; X_square;X_cubic];
+    Xout = [ones(1, size(Xin,2)); Xin; X_square;X_cubic;Xin.^4;];
     % Xout = [ones(1, size(Xin,2)); Xin;X_square];
 end
 
@@ -48,15 +48,15 @@ hold on;
 % X_normalized = NormalizeX(X);
 % X_normalized = X;
 
-% X_mapped = MapFea(X);
-% [X_standarized,mu,sig] = StdFea1(X_mapped, [], []);
-% Xready = X_standarized;
+X_mapped = MapFea(X);
+[X_standarized,mu,sig] = StdFea1(X_mapped, [], []);
+Xready = X_standarized;
 
-[X_standarized,mu,sig] = StdFea2(X, [], []);
-X_mapped = MapFea(X_standarized);
-Xready = X_mapped;
+% [X_standarized,mu,sig] = StdFea2(X, [], []);
+% X_mapped = MapFea(X_standarized);
+% Xready = X_mapped;
 
-Theta0 = [0;0;0;0];
+Theta0 = zeros(5,1);
 [ThetaOpt,JOpt] = FindTheta(Theta0,Xready,Y);
 
 Yh = ThetaOpt.'*Xready;

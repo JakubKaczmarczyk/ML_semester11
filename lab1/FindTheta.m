@@ -1,12 +1,12 @@
 function [ThetaOpt,JOpt] = FindTheta(Theta0,X,Y)
     alpha = 0.1;
-    n = 1000000;
-    acceptanceJ = 0.0001;
+    n = 100000;
     Theta = Theta0;
     i = 0;
+    mindJ = 0.0001;
     while i < n
         [J,dJ]=CostFun(X,Y,Theta);
-        if J < acceptanceJ
+        if norm(dJ) < mindJ
             break
         end
         Theta = Theta - alpha*dJ;
@@ -14,6 +14,8 @@ function [ThetaOpt,JOpt] = FindTheta(Theta0,X,Y)
     end
     ThetaOpt = Theta;
     JOpt = J;
+    global iterations;
+    iterations = i;
     % disp(i)
     % disp(JOpt)
 end
