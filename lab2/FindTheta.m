@@ -1,5 +1,5 @@
 function [ThetaOpt,JOpt] = FindTheta(Theta0,X,Y)
-    alpha = 0.5;
+    alpha = 0.8;
     n = 1000000;
     Theta = Theta0;
     i = 0;
