@@ -1,6 +1,8 @@
 clear all;
 close all;
 
+% TODO: wypisz postać hipotezy, podpisz wykresy
+
 % Odczytanie danych
 [X, Y1, Y2] = ReadData;
 
@@ -34,18 +36,30 @@ Theta0 = rand(8, 1);
 [J1_val,dJ1_val] = CostFun(X1val,Y1val,ThetaOpt1);
 [J2_val,dJ2_val] = CostFun(X2val,Y2val,ThetaOpt2);
 
+% wzór hipotezy
+symbolic_formula = '$$y = \theta_0 + \theta_1 x_1 + \theta_2 x_2 + \theta_3 x_1^2 + \theta_4 x_2^2 + \theta_5 x_1^3 + \theta_6 x_2^3 + \theta_7 x_1 x_2$$';
+
 set(gcf, 'WindowState', 'maximized');
+sgtitle(symbolic_formula, 'Interpreter', 'latex');
 subplot(2, 2, 1);
 PlotData(X,Y1);
+PlotBoundry(X,Y1);
+title('Dane i granica decyzji dla zestawu 1');
 subplot(2, 2, 2);
 PlotData(X,Y2);
+PlotBoundry(X,Y2);
+title('Dane i granica decyzji dla zestawu 2');
 
-Yh1 = (ThetaOpt01.')*X_ready;
-Yh2 = (ThetaOpt02.')*X_ready;
+Yh1 = (ThetaOpt1.')*X_ready;
+Yh2 = (ThetaOpt2.')*X_ready;
 subplot(2, 2, 3);
 PlotData(X,Yh1);
+PlotBoundry(X,Yh1);
+title('Efekt regresji logistycznej dla zestawu 1');
 subplot(2, 2, 4);
 PlotData(X,Yh2);
+PlotBoundry(X,Yh2);
+title('Efekt regresji logistycznej dla zestawu 2');
 
 % Wypisanie hipotezy
 imie_nazwisko = "Jakub Kaczmarczyk";
