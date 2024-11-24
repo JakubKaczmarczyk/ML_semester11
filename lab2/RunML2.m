@@ -1,16 +1,8 @@
 clear all;
 close all;
 
-% TODO: wypisz postać hipotezy, podpisz wykresy
-
 % Odczytanie danych
 [X, Y1, Y2] = ReadData;
-
-% % mapowanie cech
-% X_mapped = MapFea(X);
-% % standaryzacja cech
-% [X_standarized,mu,sig] = StdFea(X_mapped, [], []);
-% X_ready = X_standarized;
 
 % standaryzacja cech
 [X_standarized,mu,sig] = StdFea(X, [], []);
