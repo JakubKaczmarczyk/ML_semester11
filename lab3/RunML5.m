@@ -26,15 +26,26 @@ n4 = analyzeEigenvalues(S4);
 [X3_mapped, X3_reconstructed] = pcaMapAndReconstruct(U3, X3, n3);
 [X4_mapped, X4_reconstructed] = pcaMapAndReconstruct(U4, X4, n4);
 
+variance_proportion1 = (S1(1,1) + S1(2,2)) / sum(diag(S1)) * 100;
+variance_proportion2 = (S2(1,1) + S2(2,2)) / sum(diag(S2)) * 100;
+variance_proportion3 = (S3(1,1) + S3(2,2)) / sum(diag(S3)) * 100;
+variance_proportion4 = (S4(1,1) + S4(2,2)) / sum(diag(S4)) * 100;
+
+disp(['Stosunek udziału dwóch największych wartości własnych wśród wszystkich pięciu:']);
+disp(['dla zbioru 1: ', num2str(variance_proportion1, '%.1f'), '%']);
+disp(['dla zbioru 2: ', num2str(variance_proportion2, '%.1f'), '%']);
+disp(['dla zbioru 3: ', num2str(variance_proportion3, '%.1f'), '%']);
+disp(['dla zbioru 4: ', num2str(variance_proportion4, '%.1f'), '%']);
+
 error1 = norm(X1 - X1_reconstructed, 'fro') / norm(X1, 'fro') * 100;
 error2 = norm(X2 - X2_reconstructed, 'fro') / norm(X2, 'fro') * 100;
 error3 = norm(X3 - X3_reconstructed, 'fro') / norm(X3, 'fro') * 100;
 error4 = norm(X4 - X4_reconstructed, 'fro') / norm(X4, 'fro') * 100;
 
-disp(['Błąd rekonstrukcji X1: %%', num2str(error1)]);
-disp(['Błąd rekonstrukcji X2: %%', num2str(error2)]);
-disp(['Błąd rekonstrukcji X3: %%', num2str(error3)]);
-disp(['Błąd rekonstrukcji X4: %%', num2str(error4)]);
+disp(['Błąd rekonstrukcji X1:', num2str(error1)]);
+disp(['Błąd rekonstrukcji X2:', num2str(error2)]);
+disp(['Błąd rekonstrukcji X3:', num2str(error3)]);
+disp(['Błąd rekonstrukcji X4:', num2str(error4)]);
 
 
 set(gcf, 'WindowState', 'maximized');
